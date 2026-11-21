@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>Combloom</title>
+<link rel="icon" href="data:,">
+<link rel="stylesheet" href="src/ui/kit.css">
+<link rel="stylesheet" href="src/ui/jogo.css">
+<!-- SDK do portal (a unica tag externa; o tools/empacotar.mjs troca a linha de baixo por alvo). -->
+<script src="/sdk/v1/plataforma-sdk.js"></script>
+<script type="importmap">{ "imports": { "three": "./vendor/three/three.module.js" } }</script>
+</head>
+<body>
+<div id="carregando" role="status"><div><img class="abelha" src="src/arte/abelhas/abelha-07.webp" alt=""><div class="logo" data-t="titulo">Combloom</div><div class="barra"><i></i></div></div></div>
+<div id="palco"><canvas id="tela"></canvas></div>
+<div id="camada">
+  <div id="hud">
+    <div class="hud-esq">
+      <span id="hudFase" class="pilula">1</span>
+      <span class="pilula jardim" data-t-aria="jardim"><img src="src/arte/icones/icone-08.webp" alt=""><b id="hudJardim">0</b></span>
+    </div>
+    <div id="pote" class="pote" data-t-aria="mel"><img src="src/arte/icones/icone-02.webp" alt=""><div class="barra-mel"><i id="hudBarra"></i></div><b id="hudMel">0/30</b></div>
+    <div class="hud-dir">
+      <button id="btPausa" class="botao-icone" type="button" data-t-aria="pausa">❚❚</button>
+      <button id="btBussola" class="botao-icone bussola" type="button" data-t-aria="bussola" hidden><span class="agulha"><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M24 4 41 14v20L24 44 7 34V14z" fill="#fff4d6" stroke="#3b2412" stroke-width="3" stroke-linejoin="round"/><path d="M24 9l7 16H17z" fill="#f0525e"/><path d="M24 39l-7-14h14z" fill="#9a6a3a"/><circle cx="24" cy="25" r="3" fill="#3b2412"/></svg></span></button>
+    </div>
+  </div>
+  <div id="dica" class="dica" hidden></div>
+  <div id="avisos"></div>
+  <div id="reforcos" class="reforcos">
+    <button id="btGiroEsq" class="giro" type="button" data-t-aria="girarEsq" hidden><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M14 20a12 12 0 1 1 2.6 15.4" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M6 13l9 11 9-9z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+    <button id="rf-martelo" class="reforco" type="button" data-t-aria="martelo" hidden><img src="src/arte/icones/icone-03.webp" alt=""><b>0</b></button>
+    <button id="rf-troca" class="reforco" type="button" data-t-aria="troca" hidden><img src="src/arte/icones/icone-04.webp" alt=""><b>0</b></button>
+    <button id="rf-embaralhar" class="reforco" type="button" data-t-aria="embaralhar" hidden><img src="src/arte/icones/icone-05.webp" alt=""><b>0</b></button>
+    <button id="btGiroDir" class="giro" type="button" data-t-aria="girarDir" hidden><svg viewBox="0 0 48 48" aria-hidden="true"><path d="M34 20a12 12 0 1 0-2.6 15.4" fill="none" stroke="currentColor" stroke-width="5" stroke-linecap="round"/><path d="M42 13l-9 11-9-9z" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg></button>
+  </div>
+  <button id="btSeguir" class="botao forte seguir" type="button" data-t="seguir" hidden>Continue ▶</button>
+  <div id="modo" class="modo" hidden><span id="modoTexto"></span><button id="btCancelar" class="botao mini" type="button" data-t="cancelar">Cancel</button></div>
+</div>
+<div id="menu" class="camada-ui" hidden>
+  <div class="painel" role="dialog" aria-modal="true" aria-labelledby="menuTitulo">
+    <h2 id="menuTitulo" data-t="pausa">Paused</h2>
+    <button id="btContinuar" class="botao forte" type="button" data-t="continuar">Continue</button>
+    <button id="btBonus" class="botao" type="button" hidden>Bonus</button>
+    <button id="btSom" class="botao" type="button" aria-pressed="true" data-t="som">Sound</button>
+  </div>
+</div>
+<div id="fim" class="camada-ui" hidden>
+  <div class="painel" role="dialog" aria-modal="true" aria-labelledby="fimTitulo">
+    <img class="painel-abelha" src="src/arte/abelhas/abelha-09.webp" alt="">
+    <h2 id="fimTitulo" data-t="semEspaco">Out of space!</h2>
+    <p class="miudo" data-t="semEspacoSub">The hive is full.</p>
+    <button id="btTentar" class="botao forte" type="button" data-t="tentar">Try again</button>
+    <button id="btEspaco" class="botao" type="button" hidden>Make room</button>
+    <button id="btUsarMartelo" class="botao" type="button" hidden>Use hammer</button>
+  </div>
+</div>
+<script type="module" src="src/main.js"></script>
+</body>
+</html>

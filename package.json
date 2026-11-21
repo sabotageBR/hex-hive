@@ -1,0 +1,29 @@
+{
+  "name": "hex-hive",
+  "version": "1.1.0",
+  "private": true,
+  "description": "Combloom: puzzle 3D de pilhas hexagonais numa colmeia; viradas em cascata viram mel e o jardim em volta floresce. Poki, CrazyGames, californiagames.io e Y8.",
+  "type": "module",
+  "config": {
+    "porta": 5460
+  },
+  "kit": {
+    "trocas": {},
+    "ids": {
+      "y8": {
+        "appId": "6b00dadfcd713d94bc3a2656",
+        "gameId": "294565"
+      }
+    }
+  },
+  "scripts": {
+    "test": "node --test test/*.test.js",
+    "servir": "node tools/servir.mjs",
+    "lan": "node tools/servir.mjs --lan",
+    "empacotar": "npm test && node tools/empacotar.mjs --alvo=todos",
+    "verificar": "node tools/verificar-build.mjs --alvo=todos",
+    "grok": "node tools/grok.mjs",
+    "sprite": "node tools/sprite.mjs",
+    "medir": "node tools/medir.mjs"
+  }
+}

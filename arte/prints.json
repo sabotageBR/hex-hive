@@ -1,0 +1,36 @@
+[
+  {
+    "nome": "cascata",
+    "tamanho": "paisagem",
+    "params": "filme=30&fase=13&semente=3&lang=en",
+    "esperar": 400,
+    "js": "__jogo.pronto().then(() => { for (let m = 0; m < 20; m++) { __jogo.jogar(); for (let k = 0; k < 90 && __jogo.cena.ocupado; k++) { __jogo.quadro(30); if (__jogo.cena.voando >= 4) return; } } })"
+  },
+  {
+    "nome": "colmeia-e-jardim",
+    "tamanho": "retrato",
+    "params": "novo&fase=16&semente=2&lang=en",
+    "esperar": 2800,
+    "js": "__jogo.pronto().then(() => __jogo.girar(0.42))"
+  },
+  {
+    "nome": "mel",
+    "tamanho": "paisagem",
+    "params": "filme=30&fase=9&semente=5&lang=en",
+    "esperar": 400,
+    "js": "__jogo.pronto().then(() => { for (let m = 0; m < 30; m++) { const antes = __jogo.E.melVisto; __jogo.jogar(); for (let k = 0; k < 90 && __jogo.cena.ocupado; k++) { __jogo.quadro(30); if (__jogo.E.melVisto > antes) { for (let j = 0; j < 7; j++) __jogo.quadro(30); return; } } } })"
+  },
+  {
+    "nome": "gelo-e-trancas",
+    "tamanho": "retrato",
+    "params": "novo&fase=12&semente=5&lang=en",
+    "esperar": 2800
+  },
+  {
+    "nome": "noite",
+    "tamanho": "paisagem",
+    "params": "novo&fase=33&semente=4&lang=en",
+    "esperar": 2800,
+    "js": "__jogo.pronto().then(() => __jogo.girar(-0.5))"
+  }
+]

@@ -1,0 +1,93 @@
+/* Combloom: HUD, reforcos, dicas e paineis por cima do kit.css (paleta da biblia de arte: mel, cera, folha, creme). */
+:root {
+  --mel: #f5b82e;
+  --ambar: #d9861c;
+  --cera: #f7d98a;
+  --creme: #fff4d6;
+  --folha: #5cb84a;
+  --tinta-escura: #3b2412;
+  --kit-forte: #ff9a2e;
+  --kit-painel: #fff4d6f2;
+}
+html, body { background: #cdeeff; }
+[hidden] { display: none !important; }
+#carregando { background: radial-gradient(circle at 50% 40%, #fff4d6 0%, #f7d98a 55%, #d9861c 100%); color: var(--tinta-escura); }
+#carregando .logo { font-size: clamp(36px, 9vw, 64px); color: #fff; text-shadow: 0 4px 0 var(--ambar), 0 8px 18px #0003; letter-spacing: 1px; }
+#carregando .abelha { width: 120px; height: auto; display: block; margin: 0 auto 6px; animation: flutua 1.6s ease-in-out infinite; }
+#carregando .barra { background: #fff8; }
+#carregando .barra i { background: var(--ambar); }
+@keyframes flutua { 50% { transform: translateY(-8px); } }
+
+#hud { position: absolute; left: 0; right: 0; top: 0; display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  padding: calc(env(safe-area-inset-top) + 10px) 12px 0; pointer-events: none; }
+#hud > * { pointer-events: auto; }
+.hud-esq { display: flex; gap: 6px; flex-direction: column; align-items: flex-start; }
+.hud-dir { display: flex; gap: 8px; flex-direction: column; align-items: flex-end; }
+.bussola { background: #fff4d6e6; padding: 4px; box-shadow: 0 3px 0 #0002; animation: entra-bussola .25s ease-out; }
+.bussola .agulha { display: block; width: 100%; height: 100%; }
+.bussola svg { width: 100%; height: 100%; display: block; }
+@keyframes entra-bussola { from { opacity: 0; transform: scale(.6); } }
+.pilula { background: #fff4d6e6; color: var(--tinta-escura); border-radius: 999px; padding: 4px 12px; font-size: 16px;
+  box-shadow: 0 3px 0 #0002; display: inline-flex; align-items: center; gap: 4px; white-space: nowrap; }
+.pilula img { width: 22px; height: 22px; }
+.pote { display: flex; align-items: center; gap: 6px; background: #fff4d6e6; border-radius: 999px; padding: 4px 14px 4px 6px;
+  box-shadow: 0 3px 0 #0002; color: var(--tinta-escura); }
+.pote img { width: 34px; height: 34px; margin: -6px 0; }
+.pote b { font-size: 17px; min-width: 56px; text-align: right; }
+.barra-mel { width: clamp(70px, 24vw, 170px); height: 12px; border-radius: 6px; background: #d9861c33; overflow: hidden; }
+.barra-mel i { display: block; height: 100%; width: 0; background: linear-gradient(90deg, #ffd56a, var(--mel)); border-radius: 6px; transition: width .25s; }
+.pote.pulsa { animation: pulsa .35s; }
+@keyframes pulsa { 50% { transform: scale(1.08); } }
+#btPausa { background: #3b241266; }
+
+.dica { position: absolute; left: 50%; top: calc(env(safe-area-inset-top) + 76px); transform: translateX(-50%); max-width: min(92vw, 520px);
+  background: #3b2412d9; color: #fff; border-radius: 16px; padding: 8px 16px; font-size: clamp(15px, 4vw, 19px); text-align: center;
+  pointer-events: none; animation: entra .3s ease-out; }
+@keyframes entra { from { opacity: 0; transform: translate(-50%, -8px); } }
+
+#avisos { position: absolute; left: 0; right: 0; bottom: calc(env(safe-area-inset-bottom) + 100px); display: grid; justify-items: center; gap: 6px; pointer-events: none; }
+.aviso { background: #fff4d6f0; color: var(--tinta-escura); border-radius: 999px; padding: 8px 18px; font-size: 18px; box-shadow: 0 4px 0 #0002;
+  display: inline-flex; align-items: center; gap: 8px; animation: aviso 2.2s ease-in-out forwards; }
+.aviso img { width: 30px; height: 30px; }
+@keyframes aviso { 0% { opacity: 0; transform: scale(.7); } 12% { opacity: 1; transform: scale(1.06); } 20% { transform: scale(1); } 80% { opacity: 1; } 100% { opacity: 0; transform: translateY(-20px); } }
+
+.flutua { position: absolute; z-index: 15; pointer-events: none; color: #fff; font-size: 26px; text-shadow: 0 3px 0 var(--ambar), 0 0 10px #0004;
+  transform: translate(-50%, -50%); animation: sobe 1s ease-out forwards; }
+.flutua.dobro { color: #fff6b0; font-size: 32px; }
+@keyframes sobe { to { opacity: 0; transform: translate(-50%, -150%); } }
+
+.reforcos { position: absolute; left: 50%; bottom: calc(env(safe-area-inset-bottom) + 10px); transform: translateX(-50%); display: flex; gap: 12px; }
+.reforco { position: relative; width: 60px; height: 60px; border-radius: 18px; border: 0; background: #fff4d6e6; box-shadow: 0 4px 0 #0003; cursor: pointer; padding: 6px; }
+.reforco img { width: 100%; height: 100%; object-fit: contain; }
+.reforco b { position: absolute; right: -6px; top: -6px; min-width: 24px; height: 24px; border-radius: 12px; background: var(--ambar); color: #fff; font-size: 15px;
+  display: grid; place-items: center; padding: 0 5px; box-shadow: 0 2px 0 #0003; }
+.reforco.vazio { filter: grayscale(.8); opacity: .65; }
+.reforco.ativo { background: #ffe08a; transform: translateY(-4px); box-shadow: 0 0 0 4px #fff, 0 6px 0 #0003; }
+.reforco:active { transform: translateY(2px); }
+.reforcos { align-items: center; }
+.giro { width: 50px; height: 50px; border-radius: 25px; border: 0; background: #3b2412b3; color: #fff4d6; box-shadow: 0 3px 0 #0003;
+  cursor: pointer; padding: 9px; display: grid; place-items: center; }
+.giro svg { width: 100%; height: 100%; }
+.giro:active { transform: translateY(2px); }
+#btGiroEsq { margin-right: 6px; }
+#btGiroDir { margin-left: 6px; }
+
+.modo { position: absolute; left: 50%; bottom: calc(env(safe-area-inset-bottom) + 84px); transform: translateX(-50%); display: flex; align-items: center; gap: 10px;
+  background: #3b2412d9; color: #fff; border-radius: 18px; padding: 8px 10px 8px 16px; font-size: 16px; white-space: nowrap; }
+.seguir { position: absolute; left: 50%; bottom: calc(env(safe-area-inset-bottom) + 22%); transform: translateX(-50%); z-index: 25; min-width: 220px; }
+.botao.mini { min-width: 0; padding: 8px 14px; font-size: 16px; border-radius: 12px; }
+
+.camada-ui { background: #3b241277; }
+.painel { color: var(--tinta-escura); }
+.painel h2 { color: var(--ambar); }
+.painel .botao { color: #fff; background: #9a6a3a; }
+.painel .botao.forte { background: var(--kit-forte); }
+.painel .botao.kit-premio { background: var(--kit-premio); }
+.painel-abelha { width: 96px; height: auto; justify-self: center; margin: -54px 0 -6px; filter: drop-shadow(0 4px 4px #0003); }
+
+body.limpo #hud, body.limpo #reforcos, body.limpo #dica, body.limpo #avisos, body.limpo .kit-mao { display: none !important; }
+@media (max-height: 520px) and (orientation: landscape) {
+  .dica { top: calc(env(safe-area-inset-top) + 60px); }
+  .reforco { width: 50px; height: 50px; }
+  .giro { width: 44px; height: 44px; padding: 8px; }
+}
